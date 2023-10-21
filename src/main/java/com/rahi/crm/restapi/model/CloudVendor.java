@@ -1,12 +1,27 @@
 package com.rahi.crm.restapi.model;
 
+import java.util.UUID;
+
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "cloud_vendor")
 public class CloudVendor {
-    private String vendorId;
+    @Id
+    @GeneratedValue
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private UUID vendorId;
     private String vendorName;
     private String vendorAddress;
     private String vendorPhoneNumber;
 
-    public CloudVendor(String vendorId, String vendorName, String vendorAddress, String vendorPhoneNumber) {
+    public CloudVendor(UUID vendorId, String vendorName, String vendorAddress, String vendorPhoneNumber) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.vendorAddress = vendorAddress;
@@ -16,11 +31,11 @@ public class CloudVendor {
     public CloudVendor() {
     }
 
-    public String getVendorId() {
+    public UUID getVendorId() {
         return vendorId;
     }
 
-    public void setVendorId(String vendorId) {
+    public void setVendorId(UUID vendorId) {
         this.vendorId = vendorId;
     }
 
