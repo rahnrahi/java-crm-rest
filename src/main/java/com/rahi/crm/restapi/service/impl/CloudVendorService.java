@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.rahi.crm.restapi.controller.Exception.CloudVendorNotFoundException;
 import com.rahi.crm.restapi.model.CloudVendor;
 import com.rahi.crm.restapi.repository.ICloudvendorRepository;
 import com.rahi.crm.restapi.service.ICloudVendorService;
@@ -50,7 +51,11 @@ public class CloudVendorService implements ICloudVendorService {
 
     @Override
     public CloudVendor getCloudVendor(UUID vendorId) {
-        return iCloudvendorRepository.findById(vendorId).get();
+        var cloudVendorItem =  iCloudvendorRepository.findById(vendorId);
+        if(cloudVendorItem.isEmpty()){
+            throw new CloudVendorNotFoundException("Requested cloud vendor item not found.");
+        }
+        return cloudVendorItem.get();
     }
 
     @Override

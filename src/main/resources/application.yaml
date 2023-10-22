@@ -12,5 +12,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
+
 #JPA Settings
   jpa.hibernate.ddl_auto: update
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
